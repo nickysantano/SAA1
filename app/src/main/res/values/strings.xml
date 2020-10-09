@@ -1,0 +1,68 @@
+<resources>
+    <string name="app_name">SAA1_0706011910011</string>
+    <string name="splashScreen">Lorem Ipsum</string>
+    <string name="nameText">Name</string>
+    <string name="namaText">Full Name</string>
+    <string name="emailText">Email@example.com</string>
+    <string name="passwordText">Password</string>
+    <string name="nimText">NIM</string>
+    <string name="genderMale">Male</string>
+    <string name="genderFemale">Female</string>
+    <string name="textGender">Gender</string>
+    <string name="textAge">Age</string>
+    <string name="textAddress">Address</string>
+    <string name="btnRegister">Register</string>
+    <string name="btnLogin">Login</string>
+    <string name="loginText">// LOGIN</string>
+    <string name="txtExpertise">Expertise</string>
+    <string name="txtAddLecturer">Add Lecturer</string>
+    <string name="txtCourse">Course Subject</string>
+    <string name="txtAddCourse">Add Course</string>
+    <string name="txtAddStudent" />
+    <string name="textAddStudent">Add Student</string>
+    <string name="txtLoginStudent">Login as Student</string>
+    <string name="editlecturer">Edit Lecturer</string>
+    <string name="lecturer_list">Lecturer List</string>
+    <string name="expertiseText">Expertise</string>
+    <string name="txtLectDetail">Lecturer Details</string>
+    <string name="txtLectDetails">Lecturer Details</string>
+    <string name="addlecturer">Add Lecturer</string>
+    <string name="regStudent">Register</string>
+    <string name="student_list">Student List</string>
+
+    <string-array name="days">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+    </string-array>
+
+    <string-array name="time">
+        <item>07:30:00</item>
+        <item>08:00:00</item>
+        <item>08:30:00</item>
+        <item>09:00:00</item>
+        <item>09:30:00</item>
+        <item>10:00:00</item>
+        <item>10:30:00</item>
+        <item>11:00:00</item>
+        <item>11:30:00</item>
+        <item>12:00:00</item>
+        <item>12:30:00</item>
+        <item>13:00:00</item>
+        <item>13:30:00</item>
+        <item>14:00:00</item>
+        <item>14:30:00</item>
+        <item>15:00:00</item>
+        <item>15:30:00</item>
+        <item>16:00:00</item>
+        <item>16:30:00</item>
+        <item>17:00:00</item>
+    </string-array>
+
+    <string-array name="lecturer">
+
+    </string-array>
+
+</resources>

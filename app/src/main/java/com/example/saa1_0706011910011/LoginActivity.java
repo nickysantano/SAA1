@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -27,6 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     Button btn_login;
     String email, password;
     FirebaseAuth auth;
+    Dialog dialog;
 
 
     @Override
@@ -40,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         mPassword = findViewById(R.id.text_password);
         btn_login = findViewById(R.id.button_login);
         auth = FirebaseAuth.getInstance();
+        dialog = Glovar.loadingDialog(LoginActivity.this);
 
         mEmail.addTextChangedListener(textWatcher);
         mPassword.addTextChangedListener(textWatcher);
@@ -87,13 +90,15 @@ public class LoginActivity extends AppCompatActivity {
             btn_login.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+            dialog.show();
                     if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password)){
+                        dialog.cancel();
                         Toast.makeText(LoginActivity.this, "All field are required!", Toast.LENGTH_SHORT).show();
                     }else{
                         auth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
+                                dialog.cancel();
                                 if(task.isSuccessful()){
                                     Intent intent = new Intent(LoginActivity.this, StudentMainActivity.class);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

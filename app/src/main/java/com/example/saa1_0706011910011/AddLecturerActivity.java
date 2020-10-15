@@ -51,6 +51,7 @@ public class AddLecturerActivity extends AppCompatActivity {
         rg_gender = findViewById(R.id.rg_gender);
         mToolbar = findViewById(R.id.toolbar_lect_data);
         btn_add = findViewById(R.id.button_addLecturer);
+        dialog = Glovar.loadingDialog(AddLecturerActivity.this);
 
         mName.addTextChangedListener(textWatcher);
         mExpertise.addTextChangedListener(textWatcher);
@@ -111,7 +112,7 @@ public class AddLecturerActivity extends AppCompatActivity {
             btn_add.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    dialog.show();
+                    dialog.show();
                     name = mName.getText().toString().trim();
                     expertise = mExpertise.getText().toString().trim();
                     Map<String,Object> params = new HashMap<>();
@@ -121,7 +122,7 @@ public class AddLecturerActivity extends AppCompatActivity {
                     mDatabase.child("lecturer").child(lecturer.getId()).updateChildren(params).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-//                            dialog.cancel();
+                            dialog.cancel();
                             Intent intent;
                             intent = new Intent(AddLecturerActivity.this, LecturerData.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

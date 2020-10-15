@@ -81,6 +81,7 @@ public class LecturerData extends AppCompatActivity {
                 Intent intent = new Intent(LecturerData.this, LecturerDetailActivity.class);
                 Lecturer lecturer = new Lecturer(list.get(position).getId(), list.get(position).getName(), list.get(position).getGender(), list.get(position).getExpertise());
                 intent.putExtra("data_lecturer", lecturer);
+                intent.putExtra("data_lecturer", lecturer);
                 intent.putExtra("position", position);
                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LecturerData.this);
                 startActivity(intent, options.toBundle());

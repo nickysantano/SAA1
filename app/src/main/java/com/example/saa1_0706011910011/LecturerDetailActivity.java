@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.app.ActivityOptions;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,6 +33,7 @@ public class LecturerDetailActivity extends AppCompatActivity {
     Lecturer lecturer;
     DatabaseReference dbLecturer;
     ArrayList<Lecturer> listLecturer = new ArrayList<>();
+    Dialog dialog;
 
     int pos = 0;
     TextView lbl_name, lbl_gender, lbl_expertise;
@@ -44,6 +46,7 @@ public class LecturerDetailActivity extends AppCompatActivity {
         btn_edit = findViewById(R.id.btn_edit);
         btn_delete = findViewById(R.id.btn_delete);
         toolbar = findViewById(R.id.toolbar_lect_detail);
+        dialog = Glovar.loadingDialog(LecturerDetailActivity.this);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -82,11 +85,11 @@ public class LecturerDetailActivity extends AppCompatActivity {
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(final DialogInterface dialogInterface, int i) {
-//                                dialog.show();
+                                dialog.show();
                                 new Handler().postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-//                                        dialog.cancel();
+                                        dialog.cancel();
                                         dbLecturer.child(lecturer.getId()).removeValue(new DatabaseReference.CompletionListener() {
                                             @Override
                                             public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
@@ -96,22 +99,22 @@ public class LecturerDetailActivity extends AppCompatActivity {
                                                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LecturerDetailActivity.this);
                                                 startActivity(in, options.toBundle());
                                                 finish();
-//                                                dialogInterface.cancel();
+                                                dialogInterface.cancel();
                                             }
                                         });
 
                                     }
                                 }, 2000);
                             }
-                        });
-//                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                dialog.cancel();
-//                            }
-//                        })
-//                        .create()
-//                        .show();
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        })
+                        .create()
+                        .show();
             }
         });
 

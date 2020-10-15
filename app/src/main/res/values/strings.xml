@@ -29,6 +29,7 @@
     <string name="addlecturer">Add Lecturer</string>
     <string name="regStudent">Register</string>
     <string name="student_list">Student List</string>
+    <string name="loading">Loading...</string>
 
     <string-array name="days">
         <item>Monday</item>

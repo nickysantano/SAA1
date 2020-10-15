@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.app.ActivityOptions;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -47,6 +48,7 @@ public class RegisterActivity extends AppCompatActivity{
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
     int position = 0;
+    Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +65,7 @@ public class RegisterActivity extends AppCompatActivity{
         mToolbar = findViewById(R.id.toolbar_student_data);
         btn_register = findViewById(R.id.button_register);
         txt_register = findViewById(R.id.txt_register);
+        dialog = Glovar.loadingDialog(RegisterActivity.this);
 
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -102,7 +105,6 @@ public class RegisterActivity extends AppCompatActivity{
         student = intent.getParcelableExtra("data_student");
 
         if(action.equalsIgnoreCase("add")){
-//            getSupportActionBar().setTitle(R.string.regStudent);
             btn_register.setText(R.string.regStudent);
             btn_register.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -152,13 +154,13 @@ public class RegisterActivity extends AppCompatActivity{
 
     public void addStudent(){
         getFormValue();
-//        dialog.show();
+        dialog.show();
         mAuth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(RegisterActivity.this,
                 new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-//                            dialog.cancel();
+                            dialog.cancel();
                             uid = mAuth.getCurrentUser().getUid();
                             Student student = new Student(uid,email,pass,name,nim,gender,age,address);
                             mDatabase.child(uid).setValue(student).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -178,7 +180,7 @@ public class RegisterActivity extends AppCompatActivity{
                             }catch (Exception e){
                                 e.printStackTrace();
                             }
-//                            dialog.cancel();
+                            dialog.cancel();
                         }
                     }
                 });

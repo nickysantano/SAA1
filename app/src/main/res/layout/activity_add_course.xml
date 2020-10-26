@@ -103,12 +103,12 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar_lect_data" />
 
     <Button
-        android:id="@+id/button_addLecturer"
+        android:id="@+id/button_add_course"
         android:layout_width="128dp"
         android:layout_height="48dp"
         android:layout_marginBottom="32dp"
         android:background="@drawable/button_selector"
-        android:enabled="false"
+        android:enabled="true"
         android:fontFamily="@font/aldrich"
         android:text="@string/txtAddCourse"
         app:layout_constraintBottom_toTopOf="@+id/progressBar"

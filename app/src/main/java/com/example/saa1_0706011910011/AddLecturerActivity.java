@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -23,7 +22,6 @@ import com.example.saa1_0706011910011.model.Lecturer;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -50,7 +48,7 @@ public class AddLecturerActivity extends AppCompatActivity {
         mExpertise = findViewById(R.id.text_expertise);
         rg_gender = findViewById(R.id.rg_gender);
         mToolbar = findViewById(R.id.toolbar_lect_data);
-        btn_add = findViewById(R.id.button_addLecturer);
+        btn_add = findViewById(R.id.button_add_course);
         dialog = Glovar.loadingDialog(AddLecturerActivity.this);
 
         mName.addTextChangedListener(textWatcher);

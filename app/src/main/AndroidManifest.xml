@@ -11,6 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".StudentMainActivity"></activity>
         <activity android:name=".StudentData" />
+        <activity android:name=".CourseData" />
         <activity android:name=".LecturerDetailActivity" />
         <activity android:name=".adapter.LecturerAdapter" />
         <activity android:name=".LecturerData" />

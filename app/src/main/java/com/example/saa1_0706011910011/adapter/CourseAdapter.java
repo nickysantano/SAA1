@@ -147,16 +147,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CardViewVi
                     context.startActivity(intent);
                 }
             });
-
-//            btn_delete.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    dbCourse.child(course.getId()).removeValue(new DatabaseReference.CompletionListener() {
-//                        @Override
-//                        public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
-//
-//                        }
-//            });
         }
 
         @Override

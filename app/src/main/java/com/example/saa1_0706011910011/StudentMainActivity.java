@@ -27,6 +27,7 @@ public class StudentMainActivity extends AppCompatActivity {
     DatabaseReference reference;
     Toolbar toolbar;
     FirebaseAuth fAuth;
+    String action;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,19 +46,18 @@ public class StudentMainActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ScheduleFragment()).commit();
 
-//        btn_logout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                FirebaseAuth.getInstance().signOut();
-//                Intent intent = new Intent(StudentMainActivity.this, StarterActivity.class);
-//                startActivity(new Intent(intent);
-//                finish();
-//            }
-//        });
+        Intent intent = getIntent();
+        action = intent.getStringExtra("action");
+
+        if (action.equalsIgnoreCase("login")){
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AccountFragment()).commit();
+//            toolbar.setTitle("Account");
+        }else{
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ScheduleFragment()).commit();
+        }
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
-
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -81,7 +81,6 @@ public class StudentMainActivity extends AppCompatActivity {
                     return true;
                 }
             };
-
 //    @Override
 //    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 //        switch (item.getItemId()){

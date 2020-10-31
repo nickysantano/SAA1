@@ -112,10 +112,12 @@ public class RegisterActivity extends AppCompatActivity{
                     addStudent();
                 }
             });
-        }else if (action.equalsIgnoreCase("edit")){
+        }else if (action.equalsIgnoreCase("edit") || action.equalsIgnoreCase("login")){
             mToolbar.setTitle("Edit Student");
             txt_register.setText("// EDIT STUDENT");
             btn_register.setText("Edit");
+
+            mEmail.setEnabled(false);
 
             mName.setText(student.getName());
             mEmail.setText(student.getEmail());
@@ -135,7 +137,7 @@ public class RegisterActivity extends AppCompatActivity{
             public void onClick(View v) {
                 if (action.equalsIgnoreCase("add")){
                     addStudent();
-                }else if (action.equalsIgnoreCase("edit")){
+                }else if (action.equalsIgnoreCase("edit") || (action.equalsIgnoreCase("login"))){
                     editStudent();
                 }
             }
@@ -144,12 +146,18 @@ public class RegisterActivity extends AppCompatActivity{
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (RegisterActivity.this, StarterActivity.class);
+                Intent intent;
+
+                if (!action.equalsIgnoreCase("login")) {
+                    intent = new Intent(RegisterActivity.this, StarterActivity.class);
+                }else{
+                    intent = new Intent(RegisterActivity.this, StudentMainActivity.class);
+                    intent.putExtra("action", "login");
+                }
                 startActivity(intent);
                 finish();
             }
         });
-
     }
 
     public void addStudent(){
@@ -162,7 +170,7 @@ public class RegisterActivity extends AppCompatActivity{
                         if (task.isSuccessful()){
                             dialog.cancel();
                             uid = mAuth.getCurrentUser().getUid();
-                            Student student = new Student(uid,email,pass,name,nim,gender,age,address);
+                            Student student = new Student(uid, email, pass, name, nim, gender, age, address);
                             mDatabase.child(uid).setValue(student).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
@@ -207,8 +215,13 @@ public class RegisterActivity extends AppCompatActivity{
             public void onSuccess(Void aVoid) {
 //                            dialog.cancel();
                 Intent intent;
-                intent = new Intent(RegisterActivity.this, StudentData.class);
-                intent.putExtra("action", "edit");
+                if (action.equalsIgnoreCase("login")){
+                    intent = new Intent(RegisterActivity.this, StudentMainActivity.class);
+                    intent.putExtra("action", "login");
+                }else{
+                    intent = new Intent(RegisterActivity.this, StudentData.class);
+                    intent.putExtra("action", "edit");
+                }
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(RegisterActivity.this);
                 startActivity(intent, options.toBundle());
@@ -220,7 +233,9 @@ public class RegisterActivity extends AppCompatActivity{
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.student_menu, menu);
+        if (!action.equalsIgnoreCase("login")) {
+            getMenuInflater().inflate(R.menu.student_menu, menu);
+        }
         return true;
     }
 
@@ -242,7 +257,12 @@ public class RegisterActivity extends AppCompatActivity{
         @Override
         public void onBackPressed() {
             Intent intent;
-            intent = new Intent(RegisterActivity.this, MainActivity.class);
+            if (!action.equalsIgnoreCase("login")) {
+                intent = new Intent(RegisterActivity.this, StarterActivity.class);
+            }else{
+                intent = new Intent(RegisterActivity.this, StudentMainActivity.class);
+                intent.putExtra("action", "login");
+            }
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(RegisterActivity.this);
             startActivity(intent, options.toBundle());

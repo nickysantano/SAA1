@@ -7,7 +7,7 @@
     tools:context=".StarterActivity">
 
     <Button
-        android:id="@+id/button_add_course"
+        android:id="@+id/button_addLecturer"
         android:layout_width="179dp"
         android:layout_height="223dp"
         android:layout_marginTop="132dp"
@@ -55,7 +55,7 @@
         android:text="@string/textAddStudent"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/button_add_course"
+        app:layout_constraintEnd_toStartOf="@+id/button_addLecturer"
         app:layout_constraintHorizontal_bias="0.432"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -74,7 +74,7 @@
         android:textColor="#FFFFFF"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button_add_course"
+        app:layout_constraintEnd_toStartOf="@+id/button_addLecturer"
         app:layout_constraintHorizontal_bias="0.432"
         app:layout_constraintStart_toStartOf="parent" />
 

@@ -21,7 +21,7 @@ public class StarterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_starter);
 
         mAddStudent = findViewById(R.id.button_addStudent);
-        mAddLecturer = findViewById(R.id.button_add_course);
+        mAddLecturer = findViewById(R.id.button_addLecturer);
         mAddCourse = findViewById(R.id.button_addCourse);
         mLoginStudent = findViewById(R.id.button_loginStudent);
 

@@ -15,9 +15,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.saa1_0706011910011.Glovar;
 import com.example.saa1_0706011910011.R;
-import com.example.saa1_0706011910011.RegisterActivity;
 import com.example.saa1_0706011910011.StarterActivity;
-import com.example.saa1_0706011910011.StudentData;
 import com.example.saa1_0706011910011.model.Student;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -29,11 +27,10 @@ import com.google.firebase.database.ValueEventListener;
 
 public class AccountFragment extends Fragment {
     TextView mName, mNim, mEmail, mGender, mAge, mAddress;
-    Button logout, editAccount;
+    Button logout;
     FirebaseUser fUser;
     DatabaseReference reference;
     Dialog dialog;
-    Student student;
 
     @Nullable
     @Override
@@ -46,23 +43,11 @@ public class AccountFragment extends Fragment {
         mGender = view.findViewById(R.id.student_gender);
         mAge = view.findViewById(R.id.student_age);
         mAddress = view.findViewById(R.id.student_address);
-        editAccount = view.findViewById(R.id.btn_edit_account);
         logout = view.findViewById(R.id.btn_logout);
         dialog = Glovar.loadingDialog(getActivity());
 
         fUser = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("student").child(fUser.getUid());
-
-        editAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), RegisterActivity.class);
-                intent.putExtra("action", "login");
-                intent.putExtra("data_student", "student");
-                startActivity(intent);
-                getActivity().finish();
-            }
-        });
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +57,6 @@ public class AccountFragment extends Fragment {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
-                getActivity().finish();
             }
         });
 

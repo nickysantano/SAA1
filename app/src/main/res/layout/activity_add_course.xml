@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
+    <Spinner
+        android:id="@+id/spinner_time2"
+        android:layout_width="163dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintStart_toEndOf="@+id/spinner_time"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_day" />
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_lect_data"
         android:layout_width="420dp"
@@ -19,6 +29,26 @@
         app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
         app:title="@string/txtAddCourse"
         app:titleTextColor="#FFFFFF" />
+
+    <Spinner
+        android:id="@+id/spinner_time"
+        android:layout_width="163dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.141"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_day" />
+
+    <Spinner
+        android:id="@+id/spinner_lecturer"
+        android:layout_width="344dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.522"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_time" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/text_name_lecturer"
@@ -73,12 +103,12 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar_lect_data" />
 
     <Button
-        android:id="@+id/button_add_course"
+        android:id="@+id/button_addLecturer"
         android:layout_width="128dp"
         android:layout_height="48dp"
         android:layout_marginBottom="32dp"
         android:background="@drawable/button_selector"
-        android:enabled="true"
+        android:enabled="false"
         android:fontFamily="@font/aldrich"
         android:text="@string/txtAddCourse"
         app:layout_constraintBottom_toTopOf="@+id/progressBar"
@@ -90,85 +120,9 @@
         android:id="@+id/spinner_day"
         android:layout_width="344dp"
         android:layout_height="34dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-    <Spinner
-        android:id="@+id/spinner_lecturer"
-        android:layout_width="344dp"
-        android:layout_height="34dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView16" />
-
-    <Spinner
-        android:id="@+id/spinner_time"
-        android:layout_width="163dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="1dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.137"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
-
-    <Spinner
-        android:id="@+id/spinner_time2"
-        android:layout_width="163dp"
-        android:layout_height="33dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.352"
-        app:layout_constraintStart_toEndOf="@+id/spinner_time"
-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:fontFamily="@font/aldrich"
-        android:text="DAY"
-        android:textColor="#00BCD4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_name_lecturer" />
-
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:fontFamily="@font/aldrich"
-        android:text="START"
-        android:textColor="#00BCD4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_day" />
-
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:fontFamily="@font/aldrich"
-        android:text="LECTURER NAME"
-        android:textColor="#00BCD4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_time" />
-
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="32dp"
-        android:fontFamily="@font/aldrich"
-        android:text="END"
-        android:textColor="#00BCD4"
-        app:layout_constraintStart_toEndOf="@+id/textView13"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_day" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

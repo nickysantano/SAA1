@@ -206,7 +206,6 @@ public class RegisterActivity extends AppCompatActivity{
             @Override
             public void onSuccess(Void aVoid) {
 //                            dialog.cancel();
-
                 Intent intent;
                 intent = new Intent(RegisterActivity.this, StudentData.class);
                 intent.putExtra("action", "edit");
@@ -243,7 +242,7 @@ public class RegisterActivity extends AppCompatActivity{
         @Override
         public void onBackPressed() {
             Intent intent;
-            intent = new Intent(RegisterActivity.this, StarterActivity.class);
+            intent = new Intent(RegisterActivity.this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(RegisterActivity.this);
             startActivity(intent, options.toBundle());

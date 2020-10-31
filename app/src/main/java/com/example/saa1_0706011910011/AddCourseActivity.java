@@ -49,7 +49,6 @@ public class AddCourseActivity extends AppCompatActivity {
     FirebaseDatabase dbLecturer = FirebaseDatabase.getInstance();
     ArrayAdapter<CharSequence> adapterend;
 
-
     //
     List<String> names;
     //
@@ -113,7 +112,6 @@ public class AddCourseActivity extends AppCompatActivity {
 
         spinner_lecturer = findViewById(R.id.spinner_lecturer);
 
-
         btn_add = findViewById(R.id.button_add_course);
         //PROSES ADD DAN EDIT
         Intent intent = getIntent();
@@ -144,15 +142,9 @@ public class AddCourseActivity extends AppCompatActivity {
             setSpinner_end(startIndex);
             final int endIndex = adapterend.getPosition(course.getEnd());
             spinner_end.setSelection(endIndex);
-//            spinner_end.post(new Runnable() {
-//                @Override
-//                public void run() {
-//                    spinner_end.setSelection(endIndex);
-//                }
-//            });
+
             Log.d("end",course.getEnd());
             Log.d("ends", String.valueOf(endIndex));
-
 
             btn_add.setText(R.string.editcourse);
             btn_add.setOnClickListener(new View.OnClickListener() {
@@ -311,7 +303,7 @@ public class AddCourseActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent intent;
-        intent = new Intent(AddCourseActivity.this, MainActivity.class);
+        intent = new Intent(AddCourseActivity.this, StarterActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(AddCourseActivity.this);
         startActivity(intent, options.toBundle());

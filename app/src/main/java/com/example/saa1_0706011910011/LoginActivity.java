@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.ActivityOptions;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -132,4 +133,14 @@ public class LoginActivity extends AppCompatActivity {
 
         }
     };
+
+    @Override
+    public void onBackPressed() {
+        Intent intent;
+        intent = new Intent(LoginActivity.this, StarterActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this);
+        startActivity(intent, options.toBundle());
+        finish();
+    }
 }

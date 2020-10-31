@@ -202,5 +202,16 @@ public class AddLecturerActivity extends AppCompatActivity {
         public void afterTextChanged(Editable s) {
 
         }
+
     };
+
+    @Override
+    public void onBackPressed() {
+        Intent intent;
+        intent = new Intent(AddLecturerActivity.this, StarterActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(AddLecturerActivity.this);
+        startActivity(intent, options.toBundle());
+        finish();
+    }
 }

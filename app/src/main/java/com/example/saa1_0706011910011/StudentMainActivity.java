@@ -51,6 +51,7 @@ public class StudentMainActivity extends AppCompatActivity {
 
         if (action.equalsIgnoreCase("login")){
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AccountFragment()).commit();
+//            toolbar.setTitle("Account");
         }else{
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ScheduleFragment()).commit();
         }

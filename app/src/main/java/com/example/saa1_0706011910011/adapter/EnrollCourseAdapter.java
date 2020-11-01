@@ -72,7 +72,9 @@ public class EnrollCourseAdapter extends RecyclerView.Adapter<EnrollCourseAdapte
         holder.btn_enroll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 checkConflict(course);
+
             }
         });
 
@@ -84,6 +86,7 @@ public class EnrollCourseAdapter extends RecyclerView.Adapter<EnrollCourseAdapte
     }
 
     class CardViewViewHolder extends RecyclerView.ViewHolder {
+
         TextView lbl_subject, lbl_start, lbl_end, lbl_day, lbl_lecturer;
         Button btn_enroll;
 
@@ -131,6 +134,16 @@ public class EnrollCourseAdapter extends RecyclerView.Adapter<EnrollCourseAdapte
                                     break;
                                 }
                                 if (courseEnd > courseStart && chosenCourseStart < courseEnd){
+                            int courseStartInt = Integer.parseInt(course.getStart().replace(":",""));
+                            int courseEndInt = Integer.parseInt(course.getEnd().replace(":",""));
+                            String course_day = course.getDay();
+
+                            if (course_day.equalsIgnoreCase(course_temp_day)){
+                                if (chosenCourseStartInt > courseStartInt && chosenCourseStartInt < courseEndInt){
+                                    conflict = true;
+                                    break;
+                                }
+                                if (courseEndInt > courseStartInt && chosenCourseStartInt < courseEndInt){
                                     conflict = true;
                                     break;
                                 }

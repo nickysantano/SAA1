@@ -66,7 +66,6 @@ public class CourseData extends AppCompatActivity {
         rv_courseData = findViewById(R.id.rv_courseData);
 
         fetchCourseData();
-
     }
 
     private void fetchCourseData() {

@@ -185,105 +185,6 @@ public class AddCourseActivity extends AppCompatActivity {
             public void onFailure(@NonNull Exception e) {
                 dialog.cancel();
                 Toast.makeText(AddCourseActivity.this, "Add Course Failed!", Toast.LENGTH_SHORT).show();
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                adapterend = null;
-                setSpinner_end(position);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-    }
-
-        spinner_lecturer = findViewById(R.id.spinner_lecturer);
-
-        btn_add = findViewById(R.id.button_add_course);
-        //PROSES ADD DAN EDIT
-        Intent intent = getIntent();
-        action = intent.getStringExtra("action");
-        if (action.equals("add")){//add
-            getSupportActionBar().setTitle(R.string.addcourse);
-            btn_add.setText(R.string.addcourse);
-            btn_add.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    subject = input_subject.getText().toString().trim();
-                    day = spinner_day.getSelectedItem().toString();
-                    start = spinner_start.getSelectedItem().toString();
-                    end = spinner_end.getSelectedItem().toString();
-                    lecturer = spinner_lecturer.getSelectedItem().toString();
-                    addCourse(subject,day,start,end,lecturer);
-                }
-            });
-        }else if (action.equalsIgnoreCase("edit")){ //edit
-            getSupportActionBar().setTitle(R.string.editcourse);
-            course = intent.getParcelableExtra("edit_data_course");
-            input_subject.setText(course.getSubject());
-
-            int dayIndex = adapterday.getPosition(course.getDay());
-            spinner_day.setSelection(dayIndex);
-            int startIndex = adapterstart.getPosition(course.getStart());
-            spinner_start.setSelection(startIndex);
-            setSpinner_end(startIndex);
-            final int endIndex = adapterend.getPosition(course.getEnd());
-            spinner_end.setSelection(endIndex);
-
-            Log.d("end",course.getEnd());
-            Log.d("ends", String.valueOf(endIndex));
-
-            btn_add.setText(R.string.editcourse);
-            btn_add.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    subject = input_subject.getText().toString().trim();
-                    day = spinner_day.getSelectedItem().toString();
-                    start = spinner_start.getSelectedItem().toString();
-                    end = spinner_end.getSelectedItem().toString();
-                    lecturer = spinner_lecturer.getSelectedItem().toString();
-                    Map<String,Object> params = new HashMap<>();
-                    params.put("subject", subject);
-                    params.put("day", day);
-                    params.put("start",start);
-                    params.put("end",end);
-                    params.put("lecturer",lecturer);
-                    mDatabase.child("course").child(course.getId()).updateChildren(params).addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Intent intent;
-                            intent = new Intent(AddCourseActivity.this, CourseData.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(AddCourseActivity.this);
-                            startActivity(intent, options.toBundle());
-                            finish();
-                        }
-                    });
-                }
-            });
-        }
-
-        //
-        names = new ArrayList<>();
-        showSpinnerLecturer();
-        //
-    }
-
-    public void addCourse(String msubject, String mday, String mstart, String mend, String mlecture) {//add course
-        String mid = mDatabase.child("course").push().getKey();
-        Course course = new Course(mid,msubject, mday, mstart, mend, mlecture);
-        mDatabase.child("course").child(mid).setValue(course).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Toast.makeText(AddCourseActivity.this, "Add Course Successfully", Toast.LENGTH_SHORT).show();
-                input_subject.setText("");
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                dialog.cancel();
-                Toast.makeText(AddCourseActivity.this, "Add Course Failed!", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -333,7 +234,7 @@ public class AddCourseActivity extends AppCompatActivity {
         spinner_end.setAdapter(adapterend);
     }
 
-    public void showSpinnerLecturer(){//munculin spinner lecturer
+    public void showSpinnerLecturer(){ //showing spinner lecturer
         mDatabase.child("lecturer").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -351,10 +252,8 @@ public class AddCourseActivity extends AppCompatActivity {
                 }
             }
 
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
     }

@@ -126,11 +126,11 @@ public class EnrollCourseAdapter extends RecyclerView.Adapter<EnrollCourseAdapte
                             String course_day = course.getDay();
 
                             if (course_day.equalsIgnoreCase(course_temp_day)){
-                                if (chosenCourseStart > courseStart && chosenCourseStart < courseEnd){
+                                if (chosenCourseStart >= courseStart && chosenCourseStart < courseEnd){
                                     conflict = true;
                                     break;
                                 }
-                                if (courseEnd > courseStart && chosenCourseStart < courseEnd){
+                                if (courseEnd > courseStart && chosenCourseStart <= courseEnd){
                                     conflict = true;
                                     break;
                                 }

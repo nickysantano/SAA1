@@ -40,7 +40,7 @@ public class RegisterActivity extends AppCompatActivity{
     TextView mLoginBtn, mName, mEmail, mPassword, mNim, mAge, mAddress, txt_register;
     Button btn_register;
     RadioGroup rg_gender;
-    RadioButton radioButton;
+    RadioButton radioButton, radioMale, radioFemale;
     Toolbar mToolbar;
     String uid="", email="", pass="", name="", nim="", age="", gender="male", address="", action="";
     Student student;
@@ -61,6 +61,8 @@ public class RegisterActivity extends AppCompatActivity{
         mPassword = findViewById(R.id.text_password);
         mNim = findViewById(R.id.text_nim);
         mAge = findViewById(R.id.text_age);
+        radioMale = findViewById(R.id.radio_gender_male);
+        radioFemale = findViewById(R.id.radio_gender_female);
         mAddress = findViewById(R.id.text_address);
         mToolbar = findViewById(R.id.toolbar_student_data);
         btn_register = findViewById(R.id.button_register);
@@ -81,6 +83,7 @@ public class RegisterActivity extends AppCompatActivity{
         mNim.addTextChangedListener(textWatcher);
         mAge.addTextChangedListener(textWatcher);
         mAddress.addTextChangedListener(textWatcher);
+
 
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,6 +133,14 @@ public class RegisterActivity extends AppCompatActivity{
             }
             mAge.setText(student.getAge());
             mAddress.setText(student.getAddress());
+        }
+
+        if (student.getGender().equalsIgnoreCase("female")){
+            radioFemale.setChecked(true);
+            radioMale.setChecked(false);
+        }else{
+            radioFemale.setChecked(false);
+            radioMale.setChecked(true);
         }
 
         btn_register.setOnClickListener(new View.OnClickListener() {
@@ -203,6 +214,15 @@ public class RegisterActivity extends AppCompatActivity{
         age = mAge.getText().toString().trim();
         address = mAddress.getText().toString().trim();
 
+//        if (student.getGender().equalsIgnoreCase("female")){
+//            radioFemale.setChecked(true);
+//            radioMale.setChecked(false);
+//        }else{
+//            radioFemale.setChecked(false);
+//            radioMale.setChecked(true);
+//        }
+
+
         Map<String,Object> params = new HashMap<>();
         params.put("name", name);
         params.put("email", email);
@@ -210,6 +230,8 @@ public class RegisterActivity extends AppCompatActivity{
         params.put("nim", nim);
         params.put("age", age);
         params.put("address", address);
+        params.put("gender", gender);
+
         mDatabase.child("student").child(student.getUid()).updateChildren(params).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
